@@ -11,6 +11,9 @@ export function Room({ children }: { children: ReactNode }) {
       initialPresence={{ cursor: null, isTyping: false }}
       initialStorage={{ 
         content: "",
+        contentInitialized: new LiveObject({
+          initialized: true
+        }),
         mindMap: new LiveObject({
           root: {
             id: 'root',

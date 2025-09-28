@@ -173,7 +173,7 @@ export async function POST(request: Request) {
         }
       } catch (e: any) {
         lastErrorText = e?.message || String(e);
-        console.warn([generate-content] Model ${model} threw:, lastErrorText);
+        console.warn(`[generate-content] Model ${model} threw:`, lastErrorText);
         continue;
       }
     }

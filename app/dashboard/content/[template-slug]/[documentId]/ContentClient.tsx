@@ -215,6 +215,9 @@ export default function ContentClient({ params, initialContent }: Props) {
                             initialPresence={{ cursor: null, isTyping: false }} 
                             initialStorage={{ 
                                 content: aiOutput || '',
+                                contentInitialized: new LiveObject({
+                                    initialized: true
+                                }),
                                 mindMap: new LiveObject({
                                     root: {
                                         id: 'root',

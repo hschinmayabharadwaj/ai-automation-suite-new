@@ -26,7 +26,7 @@ const EditableNode = ({ data, id, position, onPositionChange, onAddResearchNode 
   
   const updateNodeText = useMutation(({ storage }, nodeId: string, newText: string) => {
     const mindMap = storage.get('mindMap');
-    if (mindMap && mindMap.root) {
+    if (mindMap && mindMap.get('root')) {
       const updateNode = (node: any): any => {
         // Add null check for node
         if (!node || !node.id) {
@@ -48,7 +48,7 @@ const EditableNode = ({ data, id, position, onPositionChange, onAddResearchNode 
       };
       
       try {
-        const updatedRoot = updateNode(mindMap.root);
+        const updatedRoot = updateNode(mindMap.get('root'));
         if (updatedRoot) {
           mindMap.set('root', updatedRoot);
         }
@@ -462,7 +462,7 @@ const CollaborativeMindMap: React.FC<CollaborativeMindMapProps> = ({ content, in
   // Add research result as a new node
   const addResearchNode = useMutation(({ storage }, parentId: string, title: string, content: string, type: 'quick' | 'deep') => {
     const mindMap = storage.get('mindMap');
-    if (mindMap && mindMap.root) {
+    if (mindMap && mindMap.get('root')) {
       const findAndAddToNode = (node: any): any => {
         // Add null check for node
         if (!node || !node.id) {
@@ -498,7 +498,7 @@ const CollaborativeMindMap: React.FC<CollaborativeMindMapProps> = ({ content, in
       };
       
       try {
-        const updatedRoot = findAndAddToNode(mindMap.root);
+        const updatedRoot = findAndAddToNode(mindMap.get('root'));
         if (updatedRoot) {
           mindMap.set('root', updatedRoot);
           console.log('Research node added successfully, updated root:', updatedRoot);
@@ -523,7 +523,7 @@ const CollaborativeMindMap: React.FC<CollaborativeMindMapProps> = ({ content, in
   // Add new node mutation
   const addNode = useMutation(({ storage }, parentId: string, text: string) => {
     const mindMap = storage.get('mindMap');
-    if (mindMap && mindMap.root) {
+    if (mindMap && mindMap.get('root')) {
       const addNodeToTree = (node: any): any => {
         // Add null check for node
         if (!node || !node.id) {
@@ -553,7 +553,7 @@ const CollaborativeMindMap: React.FC<CollaborativeMindMapProps> = ({ content, in
       };
       
       try {
-        const updatedRoot = addNodeToTree(mindMap.root);
+        const updatedRoot = addNodeToTree(mindMap.get('root'));
         if (updatedRoot) {
           mindMap.set('root', updatedRoot);
         }
@@ -601,7 +601,7 @@ const CollaborativeMindMap: React.FC<CollaborativeMindMapProps> = ({ content, in
   const initializeMindMap = useMutation(({ storage }) => {
     const mindMap = storage.get('mindMap');
     if (mindMap) {
-      const root = mindMap.root;
+      const root = mindMap.get('root');
       if (!root) {
         const defaultRoot = {
           id: 'root',

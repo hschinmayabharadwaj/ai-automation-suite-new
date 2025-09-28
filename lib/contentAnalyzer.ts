@@ -286,7 +286,7 @@ function extractSubtopics(content: string): string[] {
   ];
   
   structurePatterns.forEach(pattern => {
-    const matches = cleanContent.matchAll(pattern);
+    const matches = Array.from(cleanContent.matchAll(pattern));
     for (const match of matches) {
       if (match[1]) {
         const topic = match[1].trim().replace(/[.!?]+$/, ''); // Remove trailing punctuation

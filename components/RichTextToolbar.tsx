@@ -165,9 +165,9 @@ const RichTextToolbar: React.FC<RichTextToolbarProps> = ({ editor }) => {
           onChange={(e) => {
             const size = e.target.value;
             if (size === 'default') {
-              editor.chain().focus().unsetFontSize().run();
+              editor.chain().focus().unsetMark('textStyle').run();
             } else {
-              editor.chain().focus().setFontSize(size).run();
+              editor.chain().focus().setMark('textStyle', { fontSize: size }).run();
             }
           }}
           className="px-2 py-1 border border-gray-300 rounded text-sm"
