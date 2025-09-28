@@ -52,7 +52,7 @@ export default function EditorPage() {
             </div>
             
             <div className="p-6">
-              <RoomProvider id={roomId} initialPresence={{ cursor: null }}>
+              <RoomProvider id={roomId} initialPresence={{ cursor: null, isTyping: false }}>
                 <CollaborativeEditor document={document} initialContent="Start typing to test collaborative editing..." />
               </RoomProvider>
             </div>
